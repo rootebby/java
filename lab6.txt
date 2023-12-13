@@ -1,0 +1,162 @@
+public class Main {
+    public static void main(String[] args) {
+        Circle circle = new Circle(5);
+        Rectangle rectangle = new Rectangle(3, 10);
+        circle.setLocation(3, 4);
+        circle.setColor("white");
+        System.out.printf("Radius of the circle centered at (%.1f, %.1f) is %.2f\n", circle.getX(), circle.getY(), circle.radius);
+        System.out.printf("Area of rectangle is %.2f\n", rectangle.getArea());
+        System.out.printf("Color of circle is %s\n", circle.getColor());
+        System.out.printf("Color of rectangle is %s\n", rectangle.getColor());
+        rectangle.setLocation(2, 10);
+        System.out.printf("Rectangle is now located at (%.1f, %.1f)\n", rectangle.getX(), rectangle.getY());
+    }
+}
+class Shape {
+    private String color;
+    private final Point location = new Point();
+
+    public Shape(String clr) {
+        color = clr;
+    }
+
+    public double getX() {
+        return this.location.getX();
+    }
+
+    public double getY() {
+        return this.location.getY();
+    }
+
+    public void setLocation(double x, double y) {
+        this.location.setX(x);
+        this.location.setY(y);
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public void Print() {
+        System.out.printf("I am a Shape!");
+    }
+}
+class Rectangle extends Shape {
+    public double width;
+    public double height;
+
+    public Rectangle(double w, double h) {
+        super("white");
+        width = w;
+        height = h;
+    }
+
+    public Point getCornerLeftLow() {
+        Point p = new Point();
+        p.setX(getX());
+        p.setY(getY());
+        return p;
+    }
+
+    public Point getCornerLeftUpp() {
+        Point p = new Point();
+        p.setX(getX());
+        p.setY(getY() + height);
+        return p;
+    }
+
+    public Point getCornerRightLow() {
+        Point p = new Point();
+        p.setX(getX() + width);
+        p.setY(getY());
+        return p;
+    }
+
+    public Point getCornerRightUpp() {
+        Point p = new Point();
+        p.setX(getX() + width);
+        p.setY(getY() + height);
+        return p;
+    }
+
+    public double getArea() {
+        return width * height;
+    }
+
+    @Override
+    public String getColor() {
+        return super.getColor();
+    }
+
+    @Override
+    public void setColor(String color) {
+        super.setColor(color);
+    }
+
+    @Override
+    public void Print() {
+        System.out.println("I am a Rectangle!");;
+    }
+}
+class Point {
+    private double x;
+    private double y;
+
+    public double getX() {
+        return x;
+    }
+
+    public double getY() {
+        return y;
+    }
+
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
+    public void Print() {
+
+    }
+}
+class Circle extends Shape {
+    public double radius;
+
+    Circle(double r) {
+        super("white");
+        radius = r;
+    }
+
+    public Point getCenter() {
+        Point p = new Point();
+        p.setX(getX());
+        p.setY(getY());
+        return p;
+    }
+
+    public void setCenter(double x, double y) {
+        setLocation(x, y);
+    }
+
+    @Override
+    public void setColor(String color) {
+        super.setColor(color);
+    }
+
+    @Override
+    public String getColor() {
+        return super.getColor();
+    }
+
+    @Override
+    public void Print() {
+        System.out.println("I am a Circle!");;
+    }
+}
